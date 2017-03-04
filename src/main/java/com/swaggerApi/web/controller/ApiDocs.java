@@ -1,7 +1,6 @@
 package com.swaggerApi.web.controller;
 
 import com.swaggerApi.core.Address;
-import com.swaggerApi.core.AuthResponse;
 import com.swaggerApi.core.CourierDetailResponse;
 import com.swaggerApi.core.DispatchItemsRequest;
 import com.swaggerApi.core.DispatchItemsResponse;
@@ -132,20 +131,6 @@ public class ApiDocs {
         failedVariantList.add(failedVariant);
         updateInventoryResponse.setFailedVariantsList(failedVariantList);
         return updateInventoryResponse;
-    }
-
-    @RequestMapping(value = "/authToken", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Get Auth Token", notes = "This token will be used as API KEY as Header - apiKey ")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "Seller Username", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "password", value = "Seller Password", required = true, dataType = "String", paramType = "query")
-    })
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Perfect") })
-    public @ResponseBody AuthResponse authTokenGenerator(@QueryParam("username") String username, @QueryParam("password") String password) {
-        AuthResponse authResponse = new AuthResponse();
-        return authResponse;
     }
 
     @RequestMapping(value = "/orders/dispatch", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)

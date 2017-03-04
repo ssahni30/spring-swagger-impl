@@ -34,7 +34,7 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Api Documentation")
+                .title("Ecommerce Api Documentation")
                 .description("Swagger Spring Fox Api")
                 .version("1.0")
                 .termsOfServiceUrl("")
