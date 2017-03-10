@@ -7,8 +7,10 @@ import com.swaggerApi.core.DispatchItemsResponse;
 import com.swaggerApi.core.ENUM;
 import com.swaggerApi.core.FailedOrderItem;
 import com.swaggerApi.core.GetOrderResponse;
+import com.swaggerApi.core.InvalidRequest;
 import com.swaggerApi.core.Order;
 import com.swaggerApi.core.OrderItem;
+import com.swaggerApi.core.UnauthorizedResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -47,8 +49,9 @@ public class OrderProcessing {
 
     })
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect"), })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody GetOrderResponse getOrders(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize,@QueryParam("orderIds") String orderIds, @QueryParam("orderItemIds") String orderItemIds, @QueryParam("orderDateFrom") String orderDateFrom,@QueryParam("orderDateTo") String orderDateTo, @QueryParam("orderStatus") String orderStatus, HttpServletRequest httpServletRequest) {
         Order order = new Order();
         order.setBillingAddress(new Address());
@@ -67,8 +70,9 @@ public class OrderProcessing {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Dispatch Orders", notes = "Dispatch Orders - Ready to Ship")
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect"), })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody DispatchItemsResponse dispatchItems(@RequestBody DispatchItemsRequest request,HttpServletRequest httpServletRequest) {
         DispatchItemsResponse dispatchItemsResponse = new DispatchItemsResponse();
         dispatchItemsResponse.setStatus(ENUM.Status.PARTIAL_SUCCESS);
@@ -91,8 +95,9 @@ public class OrderProcessing {
             @ApiImplicitParam(name = "orderItemIds", value = "Comma Seperated Order Item Id's", required = true, dataType = "String", paramType = "query")
     })
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect") })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody CourierDetailResponse courierDetail(@QueryParam("orderItemIds") String orderItemIds) {
         CourierDetailResponse courierDetailResponse = new CourierDetailResponse();
         return courierDetailResponse;

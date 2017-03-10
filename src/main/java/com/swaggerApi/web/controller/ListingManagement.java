@@ -3,7 +3,9 @@ package com.swaggerApi.web.controller;
 import com.swaggerApi.core.ENUM;
 import com.swaggerApi.core.GetProductCountResponse;
 import com.swaggerApi.core.GetProductResponse;
+import com.swaggerApi.core.InvalidRequest;
 import com.swaggerApi.core.Product;
+import com.swaggerApi.core.UnauthorizedResponse;
 import com.swaggerApi.core.UpdateInventoryRequest;
 import com.swaggerApi.core.UpdateInventoryResponse;
 import com.swaggerApi.core.UpdatePricingRequest;
@@ -43,8 +45,9 @@ public class ListingManagement {
             @ApiImplicitParam(name = "publishedStatus", value = "published or unpublished -> default: any", required = false, dataType = "com.swaggerApi.core.ENUM.PublishedStatus", paramType = "query")
     })
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect"), })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody GetProductResponse getProduct(@QueryParam("pageNumber") Integer pageNumber, @QueryParam("pageSize") Integer pageSize, @QueryParam("skus")
             String skus, @QueryParam("publishedStatus") ENUM.PublishedStatus publishedStatus, HttpServletRequest httpServletRequest) {
         GetProductResponse getProductResponse = new GetProductResponse();
@@ -62,8 +65,9 @@ public class ListingManagement {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Fetch Products Count", notes = "Get Products Count")
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect"), })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody GetProductCountResponse getProductCount(@QueryParam("publishedStatus") ENUM.PublishedStatus publishedStatus,HttpServletRequest httpServletRequest) {
         GetProductCountResponse count = new GetProductCountResponse();
         count.setCount(BigDecimal.TEN);
@@ -74,8 +78,9 @@ public class ListingManagement {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Update Inventory", notes = "Update Inventory")
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect"), })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody UpdateInventoryResponse updateInventory(@RequestBody UpdateInventoryRequest request) {
         UpdateInventoryResponse updateInventoryResponse = new UpdateInventoryResponse();
         updateInventoryResponse.setStatus(ENUM.Status.PARTIAL_SUCCESS);
@@ -95,8 +100,9 @@ public class ListingManagement {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Update Pricing", notes = "Update Pricing")
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Fields are with validation errors"),
-            @ApiResponse(code = 200, message = "Perfect"), })
+            @ApiResponse(code = 400, message = "Fields are with validation errors", response = InvalidRequest.class),
+            @ApiResponse(code = 200, message = "Perfect"),
+            @ApiResponse(code = 401, message = "Authentication Error", response = UnauthorizedResponse.class)})
     public @ResponseBody UpdatePricingResponse updatePricing(@RequestBody UpdatePricingRequest request,HttpServletRequest httpServletRequest) {
         UpdatePricingResponse updatePricingResponse = new UpdatePricingResponse();
         UpdatePricingResponse.FailedPricings failedPricings = new UpdatePricingResponse.FailedPricings();
