@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by apple on 17/11/16.
+ * Created by sagarsahni on 17/11/16.
  */
 @ApiModel
 public class SettlementReportResponse {

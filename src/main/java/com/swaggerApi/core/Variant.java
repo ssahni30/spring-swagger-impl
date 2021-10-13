@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 
 /**
- * Created by apple on 15/11/16.
+ * Created by sagarsahni on 15/11/16.
  */
 @ApiModel
 public class Variant {

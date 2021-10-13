@@ -3,7 +3,7 @@ package com.swaggerApi.core;
 import io.swagger.annotations.ApiModel;
 
 /**
- * Created by apple on 17/11/16.
+ * Created by sagarsahni on 17/11/16.
  */
 @ApiModel
 public class Address {

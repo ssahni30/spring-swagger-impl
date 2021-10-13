@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by apple on 08/11/16.
+ * Created by sagarsahni on 08/11/16.
  */
 @ApiModel
 public class Product {

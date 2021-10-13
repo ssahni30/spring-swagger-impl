@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Created by apple on 17/11/16.
+ * Created by sagarsahni on 17/11/16.
  */
 @ApiModel
 public class FailedOrderItem {
